@@ -3,7 +3,7 @@ api wrappers for common account management functions
 
 ## Install
 
-npm install github:/ControlSpaceSoftware/cs-api-authentication.git --save
+npm install github:ControlSpaceSoftware/cs-api-authentication.git --save
 
 ## Usage
 
