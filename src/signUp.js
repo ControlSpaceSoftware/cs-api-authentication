@@ -18,15 +18,15 @@ export default function signUp({provider, clientId, shortId, getUsernameFromEmai
 			const messages = [];
 
 			if (!(name && typeof name === 'string')) {
-				messages.push({code: 'InvalidRequest', message: 'Your email address is required.'});
+				messages.push({code: 'MissingRequiredUserInput', message: 'Your email address is required.'});
 			}
 
 			if (!((email && typeof email === 'string') || (phone && typeof phone === 'string'))) {
-				messages.push({code: 'InvalidRequest', message: 'Your account email address is required.'});
+				messages.push({code: 'MissingRequiredUserInput', message: 'Your account email address is required.'});
 			}
 
 			if (!(password && typeof password === 'string')) {
-				messages.push({code: 'InvalidRequest', message: 'Your account password is required.'});
+				messages.push({code: 'MissingRequiredUserInput', message: 'Your account password is required.'});
 			}
 
 			if (messages.length) {

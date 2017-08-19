@@ -24,11 +24,11 @@ export default function signUpConfirm({provider, clientId, userPoolId, getUserna
 
 			// user input errors
 			if (!(email && typeof email === 'string')) {
-				messages.push({code: 'MissingRequiredAttribute', field: 'email', message: 'Your account email address is required.'});
+				messages.push({code: 'MissingRequiredUserInput', field: 'email', message: 'Your account email address is required.'});
 			}
 
 			if (!(code && typeof code === 'string')) {
-				messages.push({code: 'MissingRequiredAttribute', field: 'code', message: 'Your confirmation code is required.'});
+				messages.push({code: 'MissingRequiredUserInput', field: 'code', message: 'Your confirmation code is required.'});
 			}
 
 			if (messages.length) {

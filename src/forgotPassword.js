@@ -18,7 +18,7 @@ export default function forgotPassword({provider, clientId, getUsernameFromEmail
 
 			// user input errors
 			if (!(email && typeof email === 'string')) {
-				messages.push({code: 'MissingRequiredAttribute', field: 'email', message: 'Your account email address is required.'});
+				messages.push({code: 'MissingRequiredUserInput', field: 'email', message: 'Your account email address is required.'});
 			}
 
 			if (messages.length) {

@@ -18,15 +18,15 @@ export default function forgotPasswordConfirm({provider, clientId, getUsernameFr
 
 			// user input errors
 			if (!(email && typeof email === 'string')) {
-				messages.push({code: 'MissingRequiredAttribute', field: 'email', message: 'Your account email address is required.'});
+				messages.push({code: 'MissingRequiredUserInput', field: 'email', message: 'Your account email address is required.'});
 			}
 
 			if (!(code && typeof code === 'string')) {
-				messages.push({code: 'MissingRequiredAttribute', field: 'code', message: 'Your confirmation code is required.'});
+				messages.push({code: 'MissingRequiredUserInput', field: 'code', message: 'Your confirmation code is required.'});
 			}
 
 			if (!(password && typeof password === 'string')) {
-				messages.push({code: 'InvalidRequest', message: 'Your account password is required.'});
+				messages.push({code: 'MissingRequiredUserInput', message: 'Your account password is required.'});
 			}
 
 			if (messages.length) {
