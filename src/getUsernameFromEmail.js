@@ -1,4 +1,4 @@
 
-export default function getUsernameFromEmail(email) {
-	return email && email.replace(/@/, '+');
-}
+const getUsernameFromEmail = (email) => email && email.replace(/@/, '+');
+
+export default getUsernameFromEmail;
