@@ -8,7 +8,7 @@ import getUsernameFromEmail from './getUsernameFromEmail';
  * @param getUsernameFromEmail
  * @returns {forgotPassword}
  */
-export default function forgotPassword({provider, clientId, getUsernameFromEmail = getUsernameFromEmail}) {
+function forgotPassword({provider, clientId, getUsernameFromEmail = getUsernameFromEmail}) {
 
 	return function forgotPassword({email}) {
 
@@ -46,3 +46,5 @@ export default function forgotPassword({provider, clientId, getUsernameFromEmail
 	}
 
 }
+
+export default forgotPassword;
