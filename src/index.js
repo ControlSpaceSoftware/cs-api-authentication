@@ -1,7 +1,7 @@
 
-export function getUsernameFromEmail (email) {
+export const getUsernameFromEmail = function getUsernameFromEmail (email) {
 	return email && email.replace(/@/, '+');
-}
+};
 
 /**
  *
