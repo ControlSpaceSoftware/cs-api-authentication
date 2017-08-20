@@ -10,7 +10,7 @@
 		"test": "mocha test",
 		"patch": "npm version patch",
 		"push": "git push origin --follow-tags",
-		"patch:push": "npm run patch && npm run push"
+		"patch:push": "npm run build && npm run patch && npm run push"
 	},
 	"repository": {
 		"type": "git",
