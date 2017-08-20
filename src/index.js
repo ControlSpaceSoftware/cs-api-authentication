@@ -30,6 +30,8 @@ export function forgotPassword({provider, clientId, getUsernameFromEmail = getUs
 				return reject(messages);
 			}
 
+			console.log('getUsernameFromEmail', getUsernameFromEmail);
+
 			const username = getUsernameFromEmail(email);
 			console.log(JSON.stringify({username}, null, 4));
 
