@@ -1,5 +1,5 @@
 
-export const _getUsernameFromEmail = function getUsernameFromEmail (email) {
+export const getUsernameFromEmail = function getUsernameFromEmail (email) {
 	return email && email.replace(/@/, '+');
 };
 
@@ -7,10 +7,23 @@ export const _getUsernameFromEmail = function getUsernameFromEmail (email) {
  *
  * @param provider must implement forgotPassword(params, callback(err, data))
  * @param clientId
- * @param getUsernameFromEmail
+ * @param username
  * @returns {forgotPassword}
+ * @throws TypeError
  */
-export function forgotPassword({provider, clientId, getUsernameFromEmail = _getUsernameFromEmail}) {
+export function forgotPassword({provider, clientId, username = getUsernameFromEmail}) {
+
+	if (!(provider && typeof provider.forgotPassword === 'function')) {
+		throw new TypeError('provider missing forgotPassword(params, function(err,data)) function');
+	}
+
+	if (!(clientId && typeof clientId === 'string')) {
+		throw new TypeError('missing clientId');
+	}
+
+	if (!(username && typeof username === 'string')) {
+		throw new TypeError('missing getUsernameFromEmail(email) function');
+	}
 
 	return function forgotPassword({email}) {
 
@@ -30,9 +43,7 @@ export function forgotPassword({provider, clientId, getUsernameFromEmail = _getU
 				return reject(messages);
 			}
 
-			console.log('getUsernameFromEmail', getUsernameFromEmail);
-
-			const username = getUsernameFromEmail(email);
+			const username = username(email);
 			console.log(JSON.stringify({username}, null, 4));
 
 			const params = {
