@@ -1,33 +1,34 @@
 {
-  "name": "cs-api-authentication",
-  "version": "0.0.9",
-  "private": true,
-  "description": "api wrappers for common account management functions",
-  "main": "lib/index.js",
-  "scripts": {
-    "prepublish": "babel src --out-dir lib",
-    "build": "babel src --out-dir lib",
-    "test": "mocha test",
-    "version:patch": "npm version patch",
-    "git:push:patch": "npm run version:patch && git push origin --follow-tags"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
-  },
-  "author": "javadoug",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
-  },
-  "homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  }
+	"name": "cs-api-authentication",
+	"version": "0.0.9",
+	"private": true,
+	"description": "api wrappers for common account management functions",
+	"main": "lib/index.js",
+	"scripts": {
+		"prepublish": "babel src --out-dir lib",
+		"build": "babel src --out-dir lib",
+		"test": "mocha test",
+		"patch": "npm version patch",
+		"push": "git push origin --follow-tags",
+		"patch:push": "npm run patch && npm run push"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
+	},
+	"author": "javadoug",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
+	},
+	"homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.6.0"
+	},
+	"babel": {
+		"presets": [
+			"env"
+		]
+	}
 }
