@@ -1,19 +1,30 @@
 {
-  "name": "cs-api-authentication",
-  "version": "0.0.1",
-  "description": "api wrappers for common account management functions",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
-  },
-  "author": "javadoug",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
-  },
-  "homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme"
+	"name": "cs-api-authentication",
+	"version": "0.0.1",
+	"private": true,
+	"description": "api wrappers for common account management functions",
+	"main": "lib/index.js",
+	"scripts": {
+		"prepare": "babel src --out-dir lib",
+		"test": "mocha test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
+	},
+	"author": "javadoug",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
+	},
+	"homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.6.0"
+	},
+	"babel": {
+		"presets": [
+			"env"
+		]
+	}
 }
