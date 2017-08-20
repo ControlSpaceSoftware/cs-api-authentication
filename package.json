@@ -1,6 +1,6 @@
 {
   "name": "cs-api-authentication",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": true,
   "description": "api wrappers for common account management functions",
   "main": "lib/index.js",
