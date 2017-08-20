@@ -9,7 +9,7 @@
     "build": "babel src --out-dir lib",
     "test": "mocha test",
     "version:patch": "npm version patch",
-    "push:patch": "npm run version:patch && git push origin --follow-tags"
+    "git:push:patch": "npm run version:patch && git push origin --follow-tags"
   },
   "repository": {
     "type": "git",
