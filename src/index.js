@@ -16,6 +16,8 @@ export function forgotPassword({provider, clientId, getUsernameFromEmail = getUs
 
 		return new Promise((resolve, reject) => {
 
+			console.log(JSON.stringify({email}, null, 4));
+
 			const messages = [];
 
 			// user input errors
@@ -23,22 +25,27 @@ export function forgotPassword({provider, clientId, getUsernameFromEmail = getUs
 				messages.push({code: 'MissingRequiredUserInput', field: 'email', message: 'Your account email address is required.'});
 			}
 
+			console.log(JSON.stringify({messages}, null, 4));
 			if (messages.length) {
 				return reject(messages);
 			}
 
 			const username = getUsernameFromEmail(email);
+			console.log(JSON.stringify({username}, null, 4));
 
 			const params = {
 				ClientId: clientId, /* required */
 				Username: username, /* required */
 				// SecretHash: 'STRING_VALUE'
 			};
+			console.log(JSON.stringify({params}, null, 4));
 
 			provider.forgotPassword(params, function(err, data) {
 				if (err) {
+					console.log(JSON.stringify({err}, null, 4));
 					reject(err);
 				} else {
+					console.log(JSON.stringify({data}, null, 4));
 					resolve(data);
 				}
 			});
