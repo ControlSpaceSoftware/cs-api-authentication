@@ -1,5 +1,5 @@
 
-export const getUsernameFromEmail = function getUsernameFromEmail (email) {
+export const _getUsernameFromEmail = function getUsernameFromEmail (email) {
 	return email && email.replace(/@/, '+');
 };
 
@@ -10,7 +10,7 @@ export const getUsernameFromEmail = function getUsernameFromEmail (email) {
  * @param getUsernameFromEmail
  * @returns {forgotPassword}
  */
-export function forgotPassword({provider, clientId, getUsernameFromEmail = getUsernameFromEmail}) {
+export function forgotPassword({provider, clientId, getUsernameFromEmail = _getUsernameFromEmail}) {
 
 	return function forgotPassword({email}) {
 
