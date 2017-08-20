@@ -5,7 +5,6 @@
   "description": "api wrappers for common account management functions",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "babel src --out-dir lib",
     "build": "babel src --out-dir lib",
     "test": "mocha test",
     "patch": "npm version patch",
