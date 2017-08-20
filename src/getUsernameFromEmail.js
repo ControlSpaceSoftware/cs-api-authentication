@@ -1,2 +1,4 @@
 
-export default getUsernameFromEmail = (email) => email && email.replace(/@/, '+');
+export default function getUsernameFromEmail(email) {
+	return email && email.replace(/@/, '+');
+}
