@@ -70,10 +70,25 @@ export function forgotPassword({provider, clientId, username = getUsernameFromEm
  *
  * @param provider must implement confirmForgotPassword(params, function(err, data))
  * @param clientId
- * @param getUsernameFromEmail
+ * @param username
  * @returns {confirmForgotPassword}
  */
-export function forgotPasswordConfirm({provider, clientId, getUsernameFromEmail = getUsernameFromEmail}) {
+export function forgotPasswordConfirm({provider, clientId, username = getUsernameFromEmail}) {
+
+	if (!(provider && typeof provider.confirmForgotPassword === 'function')) {
+		throw new TypeError('missing provider.confirmForgotPassword(params, function(err, data)) function');
+	}
+
+	if (!(clientId && typeof clientId === 'string')) {
+		throw new TypeError('missing clientId');
+	}
+
+	if (!(username && ((typeof username === 'string') || (typeof username === 'function')))) {
+		throw new TypeError('missing username String or username(email) function');
+	}
+
+	// supports a String or a function
+	const getUsername = typeof username === 'string' ? () => username : username;
 
 	return function confirmForgotPassword({email, code, password}) {
 
@@ -98,7 +113,7 @@ export function forgotPasswordConfirm({provider, clientId, getUsernameFromEmail 
 				return reject(messages);
 			}
 
-			const username = getUsernameFromEmail(email);
+			const username = getUsername(email);
 
 			const params = {
 				ClientId: clientId, /* required */
