@@ -1,34 +1,34 @@
 {
-  "name": "cs-api-authentication",
-  "version": "0.0.11",
-  "private": true,
-  "description": "api wrappers for common account management functions",
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "babel src --out-dir lib",
-    "test": "mocha test",
-	  "commit": "npm run build && npm run test && ",
-    "patch": "npm version patch",
-    "push": "git push origin --follow-tags",
-    "patch:push": "npm run build && npm run patch && npm run push"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
-  },
-  "author": "javadoug",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
-  },
-  "homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  }
+	"name": "cs-api-authentication",
+	"version": "0.0.11",
+	"private": true,
+	"description": "api wrappers for common account management functions",
+	"main": "lib/index.js",
+	"scripts": {
+		"build": "babel src --out-dir lib",
+		"test": "mocha --compilers js:babel-core/register test",
+		"test:watch": "mocha --compilers js:babel-core/register --watch test",
+		"commit": "npm run build && npm run test && git commit",
+		"patch": "npm version patch",
+		"push": "git push origin --follow-tags",
+		"patch:push": "npm run build && npm run test && npm run patch && npm run push"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ControlSpaceSoftware/cs-api-authentication.git"
+	},
+	"author": "javadoug",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ControlSpaceSoftware/cs-api-authentication/issues"
+	},
+	"homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
+	"devDependencies": {
+		"build-scripts": "github:ControlSpaceSoftware/build-scripts.git"
+	},
+	"babel": {
+		"presets": [
+			"env"
+		]
+	}
 }
