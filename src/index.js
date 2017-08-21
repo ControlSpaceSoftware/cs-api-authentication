@@ -137,16 +137,34 @@ export function forgotPasswordConfirm({provider, clientId, username = getUsernam
 
 }
 
-
 /**
  *
  * @param provider must implement signUp(params, function(err, data))
  * @param clientId
  * @param shortId
- * @param getUsernameFromEmail
+ * @param username
  * @returns {signUp}
  */
-export function signUp({provider, clientId, shortId, getUsernameFromEmail = getUsernameFromEmail}) {
+export function signUp({provider, clientId, shortId, username = getUsernameFromEmail}) {
+
+	if (!(provider && typeof provider.signUp === 'function')) {
+		throw new TypeError('missing provider.signUp(params, function(err, data)) function');
+	}
+
+	if (!(clientId && typeof clientId === 'string')) {
+		throw new TypeError('missing clientId');
+	}
+
+	if (!(shortId && typeof shortId.generate === 'function')) {
+		throw new TypeError('missing shortId.generate() function. npm install shortid --save');
+	}
+
+	if (!(username && ((typeof username === 'string') || (typeof username === 'function')))) {
+		throw new TypeError('missing username String or username(email) function');
+	}
+
+	// supports a String or a function
+	const getUsername = typeof username === 'string' ? () => username : username;
 
 	return function signUp({name, email, phone, password}) {
 
@@ -198,7 +216,7 @@ export function signUp({provider, clientId, shortId, getUsernameFromEmail = getU
 				});
 			}
 
-			const username = getUsernameFromEmail(email);
+			const username = getUsername(email);
 
 			// todo learn how to use the secrete hash string
 
