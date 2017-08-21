@@ -5,13 +5,18 @@
 	"description": "api wrappers for common account management functions",
 	"main": "lib/index.js",
 	"scripts": {
-		"build": "babel src --out-dir lib",
-		"test": "mocha --compilers js:babel-core/register test",
-		"test:watch": "mocha --compilers js:babel-core/register --watch test",
-		"commit": "npm run build && npm run test && git commit",
-		"patch": "npm version patch",
-		"push": "git push origin --follow-tags",
-		"patch:push": "npm run build && npm run test && npm run patch && npm run push"
+		"help": "build-scripts -h",
+		"build": "build-scripts build",
+		"test": "build-scripts test",
+		"test-watch": "build-scripts test-watch",
+		"commit": "build-scripts commit",
+		"patch": "build-scripts patch",
+		"push": "build-scripts push",
+		"patch-push": "build-scripts patch-push",
+		"clean": "build-scripts clean",
+		"zip": "build-scripts zip",
+		"build-lambda": "build-scripts build-lambda",
+		"upload-lambda": "build-scripts upload-lambda"
 	},
 	"repository": {
 		"type": "git",
