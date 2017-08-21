@@ -29,7 +29,7 @@
 	},
 	"homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
 	"devDependencies": {
-		"build-scripts": "github:ControlSpaceSoftware/build-scripts.git"
+		"build-scripts": "github:ControlSpaceSoftware/build-scripts"
 	},
 	"babel": {
 		"presets": [
