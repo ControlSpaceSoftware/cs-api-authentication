@@ -5,7 +5,8 @@
 	"description": "api wrappers for common account management functions",
 	"main": "lib/index.js",
 	"scripts": {
-		"help": "build-scripts -h",
+		"help": "build-scripts help",
+		"scripts": "build-scripts scripts",
 		"build": "build-scripts build",
 		"test": "build-scripts test",
 		"test-watch": "build-scripts test-watch",
@@ -29,7 +30,7 @@
 	},
 	"homepage": "https://github.com/ControlSpaceSoftware/cs-api-authentication#readme",
 	"devDependencies": {
-		"build-scripts": "github:ControlSpaceSoftware/build-scripts"
+		"build-scripts": "github:controlspacesoftware/build-scripts"
 	},
 	"babel": {
 		"presets": [

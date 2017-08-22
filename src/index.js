@@ -251,12 +251,35 @@ export function signUp({provider, clientId, shortId, username = getUsernameFromE
  * @param provider must implement adminGetUser(params, function (err, data)) and confirmSignUp(params, function (err, data))
  * @param clientId
  * @param userPoolId
- * @param getUsernameFromEmail
+ * @param username
  * @returns {confirmSignUp}
  */
-export function signUpConfirm({provider, clientId, userPoolId, getUsernameFromEmail = getUsernameFromEmail}) {
+export function signUpConfirm({provider, clientId, userPoolId, username = getUsernameFromEmail}) {
 
-	return function confirmSignUp({id, email, code}) {
+	if (!(provider && typeof provider.adminGetUser === 'function')) {
+		throw new TypeError('missing provider.adminGetUser(params, function(err, data)) function');
+	}
+
+	if (!(provider && typeof provider.confirmSignUp === 'function')) {
+		throw new TypeError('missing provider.confirmSignUp(params, function(err, data)) function');
+	}
+
+	if (!(clientId && typeof clientId === 'string')) {
+		throw new TypeError('missing clientId');
+	}
+
+	if (!(userPoolId && typeof userPoolId === 'string')) {
+		throw new TypeError('missing userPoolId');
+	}
+
+	if (!(username && ((typeof username === 'string') || (typeof username === 'function')))) {
+		throw new TypeError('missing username String or username(email) function');
+	}
+
+	// supports a String or a function
+	const getUsername = typeof username === 'string' ? () => username : username;
+
+	return function signUpConfirm({id, email, code}) {
 
 		return new Promise((resolve, reject) => {
 
@@ -280,7 +303,7 @@ export function signUpConfirm({provider, clientId, userPoolId, getUsernameFromEm
 				return reject(messages);
 			}
 
-			const username = getUsernameFromEmail(email);
+			const username = getUsername(email);
 
 			const confirmParams = {
 				ClientId: clientId, /* required */
