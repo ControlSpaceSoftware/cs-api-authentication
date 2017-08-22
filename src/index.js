@@ -252,7 +252,7 @@ export function signUp({provider, clientId, shortId, username = getUsernameFromE
  * @param clientId
  * @param userPoolId
  * @param username
- * @returns {confirmSignUp}
+ * @returns {signUpConfirm}
  */
 export function signUpConfirm({provider, clientId, userPoolId, username = getUsernameFromEmail}) {
 
@@ -369,12 +369,27 @@ export function signUpConfirm({provider, clientId, userPoolId, username = getUse
  *
  * @param provider must implement resendConfirmationCode(params, function (err, data))
  * @param clientId
- * @param getUsernameFromEmail
- * @returns {forgotPassword}
+ * @param username
+ * @returns {signUpConfirmResend}
  */
-export function signUpConfirmResend({provider, clientId, getUsernameFromEmail = getUsernameFromEmail}) {
+export function signUpConfirmResend({provider, clientId, username = getUsernameFromEmail}) {
 
-	return function forgotPassword({email}) {
+	if (!(provider && typeof provider.resendConfirmationCode === 'function')) {
+		throw new TypeError('missing provider.resendConfirmationCode(params, function(err, data)) function');
+	}
+
+	if (!(clientId && typeof clientId === 'string')) {
+		throw new TypeError('missing clientId');
+	}
+
+	if (!(username && ((typeof username === 'string') || (typeof username === 'function')))) {
+		throw new TypeError('missing username String or username(email) function');
+	}
+
+	// supports a String or a function
+	const getUsername = typeof username === 'string' ? () => username : username;
+
+	return function signUpConfirmResend({email}) {
 
 		return new Promise((resolve, reject) => {
 
@@ -389,7 +404,7 @@ export function signUpConfirmResend({provider, clientId, getUsernameFromEmail = 
 				return reject(messages);
 			}
 
-			const username = getUsernameFromEmail(email);
+			const username = getUsername(email);
 
 			const params = {
 				ClientId: clientId, /* required */
